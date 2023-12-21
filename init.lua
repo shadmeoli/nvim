@@ -66,3 +66,7 @@ vim.cmd[[
     autocmd BufWritePost *.py,*.pyi,*.pyw,*.c,*.h,*.cpp,*.go,*.yaml,*.yml lua vim.lsp.buf.formatting()
   augroup END
 ]]
+
+-- mason setup
+require("mason").setup()
+require("mason-lspconfig").setup()
