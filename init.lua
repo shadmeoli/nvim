@@ -20,74 +20,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-  'ryanoasis/vim-devicons',
-  'scrooloose/nerdtree', 
-  "wakatime/vim-wakatime",
-  {
-    "catppuccin/nvim",
-    lazy = false,
-    name = "catppuccin",
-    priority = 1000
-  },
-  {
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
-   {
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '█' },
-        change = { text = '░░█' },
-        delete = { text = '░░' },
-        topdelete = { text = '░░' },
-        changedelete = { text = '░█' },
-      },
-      on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
-
-        -- don't override the built-in and fugitive keymaps
-        local gs = package.loaded.gitsigns
-        vim.keymap.set({ 'n', 'v' }, ']c', function()
-          if vim.wo.diff then
-            return ']c'
-          end
-          vim.schedule(function()
-            gs.next_hunk()
-          end)
-          return '<Ignore>'
-        end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
-        vim.keymap.set({ 'n', 'v' }, '[c', function()
-          if vim.wo.diff then
-            return '[c'
-          end
-          vim.schedule(function()
-            gs.prev_hunk()
-          end)
-          return '<Ignore>'
-        end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
-      end,
-    },
-  },
-
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = true,
-        component_separators = '█',
-        section_separators = '░░░░',
-      },
-    },
-  },
-}
-local opts = {}
+local plugins = require("shad.plugins.init")
 
 require("lazy").setup(plugins, opts)
 
@@ -104,3 +37,32 @@ config.setup({
 
 require("catppuccin").setup()
 vim.cmd.colorscheme "catppuccin"
+
+-- Nerd tree configuration and Keymaps
+-- Key mappings for NERDTree
+vim.api.nvim_set_keymap('n', '<leader>n', ':NERDTreeFocus<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-n>', ':NERDTree<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-o>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-f>', ':NERDTreeFind<CR>', { noremap = true, silent = true })
+
+
+vim.cmd[[
+  augroup FormatAutogroup
+    autocmd!
+    autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.json,*.css,*.scss,*.md,*.html,*.yaml,*.yml,*.lua silent! !prettier --write <afile>
+  augroup END
+]]
+
+vim.cmd[[
+  augroup FormatAutogroup
+    autocmd!
+    autocmd BufWritePost *.go lua vim.lsp.buf.formatting()
+  augroup END
+]]
+
+vim.cmd[[
+  augroup FormatAutogroup
+    autocmd!
+    autocmd BufWritePost *.py,*.pyi,*.pyw,*.c,*.h,*.cpp,*.go,*.yaml,*.yml lua vim.lsp.buf.formatting()
+  augroup END
+]]
