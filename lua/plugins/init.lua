@@ -1,6 +1,14 @@
 local default_plugins = {
   "nvim-lua/plenary.nvim",
   {
+    "tzachar/cmp-tabnine",
+    lazy=false,
+    setup =function ()
+      vim.cmd([[packadd tzachar/cmp-tabnine]])
+    end,
+    opts={}
+  },
+  {
     'stevearc/dressing.nvim',
     lazy=false,
     setup = function ()
@@ -26,11 +34,13 @@ local default_plugins = {
     end,
   },
   {
-    "oxfist/night-owl.nvim",
+    -- "oxfist/night-owl.nvim",
+    "catppuccin/nvim",
+    -- "ellisonleao/gruvbox.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme "night-owl"
+      vim.cmd.colorscheme "catppuccin"
     end,
   },
   {

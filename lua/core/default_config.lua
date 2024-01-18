@@ -10,8 +10,8 @@ M.ui = {
   hl_add = {},
   hl_override = {},
   changed_themes = {},
-  theme_toggle = { "night-owl" },
-  theme = "night-owl", -- default theme
+  theme_toggle = { "gruvbox" },
+  theme = "gruvbox", -- default theme
   transparency = false,
   lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 

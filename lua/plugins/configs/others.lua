@@ -13,7 +13,6 @@ M.blankline = {
     "mason",
     "nvdash",
     "nvcheatsheet",
-    "",
   },
   buftype_exclude = { "terminal" },
   show_trailing_blankline_indent = false,
