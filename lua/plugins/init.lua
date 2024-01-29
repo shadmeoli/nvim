@@ -1,13 +1,6 @@
 local default_plugins = {
   "nvim-lua/plenary.nvim",
-  {
-    "tzachar/cmp-tabnine",
-    lazy=false,
-    setup =function ()
-      vim.cmd([[packadd tzachar/cmp-tabnine]])
-    end,
-    opts={}
-  },
+  require "plugins.configs.linting",
   {
     'stevearc/dressing.nvim',
     lazy=false,
@@ -30,17 +23,17 @@ local default_plugins = {
     "mhartington/formatter.nvim",
     event = "VeryLazy",
     opts = function()
-      return require "custom.configs.formatter"
+      return require "plugins.configs.formatter"
     end,
   },
   {
-    -- "oxfist/night-owl.nvim",
-    "catppuccin/nvim",
+    "oxfist/night-owl.nvim",
+    -- "catppuccin/nvim",
     -- "ellisonleao/gruvbox.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme "catppuccin"
+      vim.cmd.colorscheme "night-owl"
     end,
   },
   {

@@ -10,8 +10,8 @@ M.ui = {
   hl_add = {},
   hl_override = {},
   changed_themes = {},
-  theme_toggle = { "gruvbox" },
-  theme = "gruvbox", -- default theme
+  theme_toggle = { "nightowl" },
+  theme = "nightowl", -- default theme
   transparency = false,
   lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 
@@ -85,5 +85,6 @@ M.plugins = "" -- path i.e "custom.plugins", so make custom/plugins.lua file
 M.lazy_nvim = require "plugins.configs.lazy_nvim" -- config for lazy.nvim startup options
 
 M.mappings = require "core.mappings"
+
 
 return M
