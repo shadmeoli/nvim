@@ -11,7 +11,7 @@ return {
       javascriptreact = { "eslint_d" },
       typescriptreact = { "ts-standard" },
       svelte = { "eslint_d" },
-      python = { "ruff-lsp" },
+      python = { "ruff" },
       go={"gospl"}
     }
 
