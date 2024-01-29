@@ -19,8 +19,8 @@ return {
         markdown = { "prettier" },
         graphql = { "prettier" },
         lua = { "stylua" },
-        python = { "isort", "black" },
-        go={"gopls"}
+        python = { "black" },
+        go={"goimports"}
       },
       format_on_save = {
         lsp_fallback = true,
