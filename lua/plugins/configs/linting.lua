@@ -7,9 +7,9 @@ return {
 
     lint.linters_by_ft = {
       javascript = { "eslint_d" },
-      typescript = { "ts-standard" },
+      typescript = { "eslint_d" },
       javascriptreact = { "eslint_d" },
-      typescriptreact = { "ts-standard" },
+      typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "ruff" },
       go={"gospl"}
