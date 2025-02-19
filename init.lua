@@ -16,5 +16,5 @@ require("lsp")
 require("treesitter")
 require("format")
 require("telescope")
-require("cmp") -- Move cmp to the end
+require("cmp") 
 
