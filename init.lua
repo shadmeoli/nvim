@@ -8,13 +8,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-require("options")
 require("keymaps")
+require("options")
 require("plugins")
-require("lsp")
-require("treesitter")
-require("format")
-require("telescope")
-require("cmp") 
-
