@@ -1,9 +1,14 @@
-return {
-  'felipeagc/fleet-theme-nvim',
-  config = function()
-    vim.cmd 'colorscheme fleet'
-  end,
-}
+-- return {}
+return { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 }
+
+-- return {
+--   'felipeagc/fleet-theme-nvim',
+--   config = function()
+--     vim.cmd 'colorscheme fleet'
+--
+--     vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#3c3c3c', nocombine = true })
+--   end,
+-- }
 
 -- return {
 --   'olivercederborg/poimandres.nvim',
@@ -19,21 +24,21 @@ return {
 --     }
 --   end,
 --   init = function()
---     vim.cmd("colorscheme poimandres")
---   end
--- },
+--     vim.cmd 'colorscheme poimandres'
+--   end,
+-- }
 
--- return  {
---    'folke/tokyonight.nvim',
---    priority = 1000, -- Make sure to load this before all the other start plugins.
---    init = function()
---      vim.cmd.colorscheme 'tokyonight-night'
---      vim.cmd.hi 'Comment gui=none'
---    end,
---  },
---
---
 --return {
+--  'folke/tokyonight.nvim',
+--  priority = 1000, -- Make sure to load this before all the other start plugins.
+--  init = function()
+--    vim.cmd.colorscheme 'tokyonight-night'
+--    vim.cmd.hi 'Comment gui=none'
+--  end,
+--}
+--
+--
+-- return {
 --   'rose-pine/neovim',
 --   name = 'rose-pine',
 --   priority = 1000,
