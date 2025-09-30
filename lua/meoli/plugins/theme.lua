@@ -1,6 +1,43 @@
 -- return {}
-return { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 }
 
+return {
+  'catppuccin/nvim',
+  name = 'catppuccin',
+  priority = 1000,
+  config = function()
+    require('catppuccin').setup {
+      flavour = 'mocha', -- latte, frappe, macchiato, mocha
+      background = {
+        light = 'latte',
+        dark = 'mocha',
+      },
+      transparent_background = false,
+      term_colors = true,
+      no_italic = false,
+      no_bold = false,
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        telescope = true,
+        which_key = true,
+        native_lsp = {
+          enabled = true,
+          underlines = {
+            errors = { 'undercurl' },
+            hints = { 'undercurl' },
+            warnings = { 'undercurl' },
+            information = { 'undercurl' },
+          },
+        },
+      },
+    }
+
+    -- Load the colorscheme
+    vim.cmd.colorscheme 'catppuccin'
+  end,
+}
 -- return {
 --   'felipeagc/fleet-theme-nvim',
 --   config = function()
