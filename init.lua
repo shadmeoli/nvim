@@ -5,9 +5,6 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.showmode = false
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
 vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.ignorecase = true
@@ -32,6 +29,9 @@ vim.cmd [[
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 ]]
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end)
 
 -- Window navigation will be handled by vim-tmux-navigator plugin
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
