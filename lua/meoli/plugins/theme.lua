@@ -1,85 +1,18 @@
 return {
-  'nickaroot/vim-xcode-dark-theme',
-  name = 'xcode_dark',
-  priority = 1000,
-  config = function()
-    vim.cmd.colorscheme 'xcode_dark'
-  end,
+  {
+    'craftzdog/solarized-osaka.nvim',
+    priority = 1000,
+    opts = function()
+      return {
+        transparent = true,
+      }
+    end,
+    config = function(_, opts)
+      require('solarized-osaka').setup(opts)
+      vim.cmd.colorscheme 'solarized-osaka'
+    end,
+  },
 }
-
--- return {
---   'catppuccin/nvim',
---   name = 'catppuccin',
---   priority = 1000,
---   config = function()
---     require('catppuccin').setup {
---       flavour = 'mocha', -- latte, frappe, macchiato, mocha
---       background = {
---         light = 'latte',
---         dark = 'mocha',
---       },
---       transparent_background = false,
---       term_colors = true,
---       no_italic = false,
---       no_bold = false,
---       integrations = {
---         cmp = true,
---         gitsigns = true,
---         nvimtree = true,
---         treesitter = true,
---         telescope = true,
---         which_key = true,
---         native_lsp = {
---           enabled = true,
---           underlines = {
---             errors = { 'undercurl' },
---             hints = { 'undercurl' },
---             warnings = { 'undercurl' },
---             information = { 'undercurl' },
---           },
---         },
---       },
---     }
---
---     -- Load the colorscheme
---     vim.cmd.colorscheme 'catppuccin'
---   end,
--- }
--- return {
---   'felipeagc/fleet-theme-nvim',
---   config = function()
---     vim.cmd 'colorscheme fleet'
---
---     vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#3c3c3c', nocombine = true })
---   end,
--- }
-
--- return {
---   'olivercederborg/poimandres.nvim',
---   lazy = false,
---   priority = 1000,
---   config = function()
---     require('poimandres').setup {
---       bold_vert_split = false, -- use bold vertical separators
---       dim_nc_background = false, -- dim 'non-current' window backgrounds
---       disable_background = false, -- disable background
---       disable_float_background = false, -- disable background for floats
---       disable_italics = true, -- disable italics
---     }
---   end,
---   init = function()
---     vim.cmd 'colorscheme poimandres'
---   end,
--- }
-
--- return {
---   'folke/tokyonight.nvim',
---   priority = 1000, -- Make sure to load this before all the other start plugins.
---   init = function()
---     vim.cmd.colorscheme 'tokyonight-night'
---     vim.cmd.hi 'Comment gui=none'
---   end,
--- }
 
 -- return {
 --   'rose-pine/neovim',
