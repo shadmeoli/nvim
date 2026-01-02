@@ -125,7 +125,11 @@ rtp:prepend(lazypath)
 
 require('lazy').setup({
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    lazy = false,
+  },
   {
     'christoomey/vim-tmux-navigator',
     cmd = {
@@ -234,6 +238,16 @@ require('lazy').setup({
     },
   },
 })
+
+local api = require 'Comment.api'
+
+vim.keymap.set('n', '//', function()
+  api.toggle.linewise.current()
+end, { desc = 'Toggle comment' })
+
+vim.keymap.set('v', '//', function()
+  api.toggle.linewise(vim.fn.visualmode())
+end, { desc = 'Toggle comment (visual)' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

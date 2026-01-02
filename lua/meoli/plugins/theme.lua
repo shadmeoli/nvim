@@ -1,15 +1,41 @@
+-- return {
+--   {
+--     'Mofiqul/vscode.nvim',
+--     priority = 1000,
+--     config = function()
+--       require('vscode').setup {
+--         style = 'dark',
+--         transparent = false,
+--         italic_comments = true,
+--         disable_nvimtree_bg = true,
+--       }
+--
+--       require('vscode').load()
+--     end,
+--   },
+-- }
+--
+
 return {
   {
     'craftzdog/solarized-osaka.nvim',
     priority = 1000,
-    opts = function()
-      return {
-        transparent = true,
-      }
-    end,
+    opts = {
+      transparent = true,
+    },
     config = function(_, opts)
       require('solarized-osaka').setup(opts)
       vim.cmd.colorscheme 'solarized-osaka'
+
+      local palette = require('solarized-osaka.colors').setup()
+      vim.api.nvim_set_hl(0, 'Normal', {
+        fg = palette.fg,
+        bg = palette.bg,
+      })
+      vim.api.nvim_set_hl(0, 'NormalNC', {
+        fg = palette.fg,
+        bg = palette.bg,
+      })
     end,
   },
 }

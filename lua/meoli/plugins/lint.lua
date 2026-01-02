@@ -1,4 +1,4 @@
-return {
+eturn {
 
   { -- Linting
     'mfussenegger/nvim-lint',
