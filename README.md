@@ -5,30 +5,33 @@
 
 ## Structure
 ```sh
-init.lua
-lazy-lock.json
-lua
-└── meoli
-    ├── health.lua
-    └── plugins
-        ├── aistuff.lua
-        ├── autocomplete.lua
-        ├── autoformat.lua
-        ├── autopairs.lua
-        ├── debug.lua
-        ├── fuzzyFind.lua
-        ├── gitsigns.lua
-        ├── indent_line.lua
-        ├── lint.lua
-        ├── lsp.lua
-        ├── lualine.lua
-        ├── mini.lua
-        ├── neo-tree.lua
-        ├── noise.lua
-        ├── theme.lua
-        ├── todo.lua
-        └── treesitter.lua
-README.md
-
+ .
+├──  init.lua
+├──  lazy-lock.json
+├──  lua
+│  └──  meoli
+│     └──  plugins
+│        ├──  aistuff.lua
+│        ├──  autocomplete.lua
+│        ├──  autoformat.lua
+│        ├──  autopairs.lua
+│        ├──  debug.lua
+│        ├──  devcontainer.lua
+│        ├──  fuzzyFind.lua
+│        ├──  gitsigns.lua
+│        ├──  indent_line.lua
+│        ├──  lint.lua
+│        ├──  lsp.lua
+│        ├──  lualine.lua
+│        ├──  mini.lua
+│        ├──  navigator.lua
+│        ├──  neo-tree.lua
+│        ├──  noise.lua
+│        ├──  theme.lua
+│        ├──  todo.lua
+│        ├──  treesitter.lua
+│        ├──  wakatime.lua
+│        └──  whickey.lua
+└──  README.md
 ```
 
