@@ -1,25 +1,46 @@
--- return {}
-
 return {
-  'catppuccin/nvim',
-  name = 'catppuccin',
+  'datsfilipe/vesper.nvim',
   priority = 1000,
+  lazy = false,
   config = function()
-    require('catppuccin').setup {
-      flavour = 'mocha', -- latte, frappe, macchiato, mocha
-      transparent_background = false,
-      integrations = {
-        treesitter = true,
-        telescope = true,
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
+    require('vesper').setup {
+      transparent = false,
+      italics = {
+        comments = true,
+        keywords = true,
+        functions = false,
+        classes = false,
+        constants = false,
+        strings = false,
+        variables = false,
       },
+      overrides = {},
+      palette_overrides = {},
     }
-
-    vim.cmd.colorscheme 'catppuccin'
+    vim.cmd.colorscheme 'vesper'
   end,
 }
+
+-- return {
+--   'catppuccin/nvim',
+--   name = 'catppuccin',
+--   priority = 1000,
+--   config = function()
+--     require('catppuccin').setup {
+--       flavour = 'mocha', -- latte, frappe, macchiato, mocha
+--       transparent_background = false,
+--       integrations = {
+--         treesitter = true,
+--         telescope = true,
+--         cmp = true,
+--         gitsigns = true,
+--         nvimtree = true,
+--       },
+--     }
+--
+--     vim.cmd.colorscheme 'catppuccin'
+--   end,
+-- }
 
 --return {
 --  {
