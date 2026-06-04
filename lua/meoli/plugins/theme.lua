@@ -10,34 +10,33 @@ return {
     vim.g.substrata_italic_variables = false
     vim.g.substrata_transparent = false
     vim.g.substrata_variant = 'default'
-
     vim.cmd.colorscheme 'substrata'
   end,
 }
 
--- return {
---   'datsfilipe/vesper.nvim',
---   priority = 1000,
---   lazy = false,
---   config = function()
---     require('vesper').setup {
---       transparent = false,
---       italics = {
---         comments = true,
---         keywords = true,
---         functions = false,
---         classes = false,
---         constants = false,
---         strings = false,
---         variables = false,
---       },
---       overrides = {},
---       palette_overrides = {},
---     }
---     vim.cmd.colorscheme 'vesper'
---   end,
--- }
-
+--return {
+--  'datsfilipe/vesper.nvim',
+--  priority = 1000,
+--  lazy = false,
+--  config = function()
+--    require('vesper').setup {
+--      transparent = false,
+--      italics = {
+--        comments = true,
+--        keywords = true,
+--        functions = false,
+--        classes = false,
+--        constants = false,
+--        strings = false,
+--        variables = false,
+--      },
+--      overrides = {},
+--      palette_overrides = {},
+--    }
+--    vim.cmd.colorscheme 'vesper'
+--  end,
+--}
+--
 -- return {
 --   'catppuccin/nvim',
 --   name = 'catppuccin',
