@@ -29,9 +29,21 @@ vim.cmd [[
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 ]]
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
+if vim.fn.executable 'xclip' == 1 then
+  vim.g.clipboard = {
+    name = 'xclip',
+    copy = {
+      ['+'] = 'xclip -selection clipboard',
+      ['*'] = 'xclip -selection primary',
+    },
+    paste = {
+      ['+'] = 'xclip -selection clipboard -o',
+      ['*'] = 'xclip -selection primary -o',
+    },
+    cache_enabled = 1,
+  }
+end
+vim.o.clipboard = 'unnamedplus'
 
 -- Window navigation will be handled by vim-tmux-navigator plugin
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -71,26 +83,48 @@ end, { desc = 'Toggle comment on current line' })
 vim.keymap.set('v', '<leader>/', function()
   local start_line = vim.fn.line "'<"
   local end_line = vim.fn.line "'>"
-  local comment_string = vim.bo.commentstring:gsub('%%s', '')
 
-  for line_num = start_line, end_line do
-    local line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
-    local new_line
+  local commentstring = vim.bo.commentstring
 
-    if line:match('^%s*' .. vim.pesc(comment_string)) then
-      -- Uncomment
-      new_line = line:gsub('^(%s*)' .. vim.pesc(comment_string) .. '%s?', '%1')
-    else
-      -- Comment
-      local indent = line:match '^%s*'
-      local content = line:sub(#indent + 1)
-      new_line = indent .. comment_string .. ' ' .. content
-    end
-
-    vim.api.nvim_buf_set_lines(0, line_num - 1, line_num, false, { new_line })
+  --  Only works with block-style commentstrings like /* %s */
+  if not commentstring:find '%%s' then
+    return
   end
-end, { desc = 'Toggle comment on selected lines' })
 
+  local before, after = commentstring:match '^(.-)%%s(.-)$'
+
+  --  Make sure this is actually a block comment
+  if before == '' or after == '' then
+    vim.notify('No multiline comment syntax for this filetype', vim.log.levels.WARN)
+    return
+  end
+
+  local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+
+  --  Check if already wrapped
+  local first = lines[1]
+  local last = lines[#lines]
+
+  local already_commented = first:match('^%s*' .. vim.pesc(before)) and last:match(vim.pesc(after) .. '%s*$')
+
+  if already_commented then
+    --  Remove opening comment
+    lines[1] = lines[1]:gsub('^(%s*)' .. vim.pesc(before) .. '%s?', '%1', 1)
+
+    --  Remove closing comment
+    lines[#lines] = lines[#lines]:gsub('%s*' .. vim.pesc(after) .. '%s*$', '', 1)
+  else
+    --  Add opening comment
+    lines[1] = before .. '\n' .. lines[1]
+
+    --  Add closing comment
+    lines[#lines] = lines[#lines] .. after
+  end
+
+  vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, lines)
+end, {
+  desc = 'Toggle multiline block comment',
+})
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
