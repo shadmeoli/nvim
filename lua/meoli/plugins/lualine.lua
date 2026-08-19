@@ -6,17 +6,17 @@ return {
     local lualine = require 'lualine'
 
     local colors = {
-      bg = '#20222d',
-      fg = '#b5b4c9',
-      yellow = '#d2b45f',
-      cyan = '#7dc2c7',
-      darkblue = '#2e313d',
-      green = '#92c47e',
-      orange = '#fe9f7c',
-      violet = '#c6aed7',
-      magenta = '#a18daf',
-      blue = '#a0b9d8',
-      red = '#cf8164',
+      bg = '#1e1f1c',
+      fg = '#f8f8f2',
+      yellow = '#e6db74',
+      cyan = '#a1efe4',
+      darkblue = '#272822',
+      green = '#a6e22e',
+      orange = '#fd971f',
+      violet = '#ae81ff',
+      magenta = '#f92672',
+      blue = '#66d9ef',
+      red = '#f92672',
     }
 
     local conditions = {
