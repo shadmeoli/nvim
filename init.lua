@@ -29,21 +29,16 @@ vim.cmd [[
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 ]]
-if vim.fn.executable 'xclip' == 1 then
+-- Use OSC 52 across SSH without a GUI clipboard daemon.
+if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
+  local osc52 = require 'vim.ui.clipboard.osc52'
   vim.g.clipboard = {
-    name = 'xclip',
-    copy = {
-      ['+'] = 'xclip -selection clipboard',
-      ['*'] = 'xclip -selection primary',
-    },
-    paste = {
-      ['+'] = 'xclip -selection clipboard -o',
-      ['*'] = 'xclip -selection primary -o',
-    },
-    cache_enabled = 1,
+    name = 'OSC 52',
+    copy = { ['+'] = osc52.copy '+', ['*'] = osc52.copy '*' },
+    paste = { ['+'] = osc52.paste '+', ['*'] = osc52.paste '*' },
   }
+  vim.o.clipboard = 'unnamedplus'
 end
-vim.o.clipboard = 'unnamedplus'
 
 -- Window navigation will be handled by vim-tmux-navigator plugin
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -135,7 +130,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Set indent to 2 spaces for JavaScript/TypeScript files
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'json', 'jsonc', 'go', 'rust', 'zig', 'lua', 'html', 'tmpl' },
+  pattern = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'json', 'jsonc', 'go', 'zig', 'lua', 'html', 'tmpl' },
   callback = function()
     vim.opt_local.shiftwidth = 2
     vim.opt_local.tabstop = 2
