@@ -24,8 +24,4 @@ return {
       buftypes = { 'terminal', 'nofile' },
     },
   },
-  config = function(_, opts)
-    require('ibl').setup(opts)
-    vim.api.nvim_set_hl(0, 'IblIndent', { fg = '#3a3a3a', nocombine = true })
-  end,
 }

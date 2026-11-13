@@ -1,22 +1,22 @@
 -- File: lua/custom/plugins/lualine.lua
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'catppuccin' },
   config = function()
     local lualine = require 'lualine'
+    local palette = require('catppuccin.palettes').get_palette 'mocha'
 
     local colors = {
-      bg = '#1e1f1c',
-      fg = '#f8f8f2',
-      yellow = '#e6db74',
-      cyan = '#a1efe4',
-      darkblue = '#272822',
-      green = '#a6e22e',
-      orange = '#fd971f',
-      violet = '#ae81ff',
-      magenta = '#f92672',
-      blue = '#66d9ef',
-      red = '#f92672',
+      bg = palette.mantle,
+      fg = palette.text,
+      yellow = palette.yellow,
+      cyan = palette.teal,
+      green = palette.green,
+      orange = palette.peach,
+      violet = palette.mauve,
+      magenta = palette.pink,
+      blue = palette.blue,
+      red = palette.red,
     }
 
     local conditions = {

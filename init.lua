@@ -23,12 +23,9 @@ vim.o.confirm = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-vim.cmd [[
-  highlight Normal guibg=none
-  highlight NonText guibg=none
-  highlight Normal ctermbg=none
-  highlight NonText ctermbg=none
-]]
+vim.o.termguicolors = true
+vim.o.background = 'dark'
+
 -- Use OSC 52 across SSH without a GUI clipboard daemon.
 if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
   local osc52 = require 'vim.ui.clipboard.osc52'
