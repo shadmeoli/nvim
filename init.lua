@@ -26,6 +26,10 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 
+-- info: this is for wayland clip compact
+-- sudo apt install wl-clipboard #run this if not installed
+vim.o.clipboard = 'unnamedplus'
+
 -- Use OSC 52 across SSH without a GUI clipboard daemon.
 if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
   local osc52 = require 'vim.ui.clipboard.osc52'
